@@ -11,7 +11,7 @@ export default function NewReply({
     <div className="newReplyContainer box">
       <div className="replyToCommentContent">
         <div className="replyToCommentImg">
-          <img src={`${process.env.PUBLIC_URL}${image.png}`} />
+          <img src={`${process.env.PUBLIC_URL}${image.png}`} alt="User" />
         </div>
         <div className="replyToCommentTextarea">
           <textarea

@@ -6,7 +6,7 @@ export default function NewComment({ image, newComment }) {
     <div className="newCommentContainer">
       <div className="newCommentContent">
         <div className="newCommentImg">
-          <img src={`${process.env.PUBLIC_URL}${image.png}`} />
+          <img src={`${process.env.PUBLIC_URL}${image.png}`} alt="User" />
         </div>
         <div className="newCommentTextbox">
           <textarea
