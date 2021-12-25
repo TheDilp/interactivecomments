@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-<!-- - Solution URL: [Add solution URL here](https://your-solution-url.com) -->
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/interactive-comments-section-with-react-responsive-design-and-flexbox-3rhP2hAE-)
 - Live Site URL: [Live Site](https://optimistic-goodall-4ce36f.netlify.app/)
 
 ## My process
