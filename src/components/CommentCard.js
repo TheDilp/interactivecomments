@@ -47,11 +47,17 @@ export default function CommentCard({
               alt="test"
             />
             <b className="userName">{comment.user.username} </b>
+
+            {/* If this is the current user's comment show a tag in the comment header */}
             {current ? <span className="youTag">you</span> : ""}
+
+            {/* Check if the createdAt property of a comment is a number and use the timeSince function to calculate the elapsed time
+            NOTE: This is due to the given dummy data being a string ("2 months ago"), making the check necessary, in a real world scenario this would not be the case */}
             {typeof comment.createdAt === "number"
               ? timeSince(comment.createdAt) + " ago"
               : comment.createdAt}
 
+            {/* Buttons that will be rendered in case the width of the screen is larger than 1440px, the display is set via CSS */}
             <div className="commentButtons desktop">
               {current ? (
                 <>
@@ -100,6 +106,7 @@ export default function CommentCard({
             </div>
           </div>
           <div className="commentText">
+            {/* Check if the comment is being edited by the user and render a textarea or comment text */}
             {edit && (
               <div className="newCommentTextbox">
                 <textarea
@@ -129,6 +136,7 @@ export default function CommentCard({
               ))}
           </div>
         </div>
+        {/* Buttons that will be rendered in case the width of the screen is smaller than 1440px, the display is set via CSS */}
         <div className="commentButtons mobile">
           {current ? (
             <>
@@ -176,6 +184,7 @@ export default function CommentCard({
           )}
         </div>
       </div>
+      {/* If a user is replying to another user's comment render a box for replying */}
       {newReply && (
         <NewReply
           image={currentUser.image}
@@ -184,6 +193,7 @@ export default function CommentCard({
           setNewReply={setNewReply}
         />
       )}
+      {/* Check if the current comment has replies and recursively render each subsequent replies, thus creating a nested comment structure */}
       {comment?.replies?.length > 0 && (
         <div className="commentReplies">
           {comment.replies.map((reply) => (

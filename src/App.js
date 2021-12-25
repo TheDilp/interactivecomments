@@ -8,6 +8,13 @@ function App() {
   const [data, setData] = useState(JSONData);
 
   const [deleteComment, setDeleteComment] = useState(false);
+
+  // TODO: Combine the two functions for each functionality into one
+
+  // Functions for voting on comments
+  // The first function checks all the top level comments
+  // The second function recursively checks replies
+
   const updateScore = (id, change) => {
     let temp = data;
     for (let comment of temp.comments) {
@@ -34,21 +41,8 @@ function App() {
       }
     }
   };
-  const findCommentToDelete = (parent, replies, id) => {
-    let temp = parent;
-    for (let reply of replies) {
-      if (reply.id === id) {
-        temp.replies = temp.replies.filter(
-          (filComment) => filComment.id !== id
-        );
-        break;
-      } else {
-        if (reply?.replies?.length > 0) {
-          findCommentToDelete(reply, reply.replies, id);
-        }
-      }
-    }
-  };
+
+  // Functions for deleting a user's comment
   const deleteOneComment = (id) => {
     let temp = data;
     for (let comment of temp.comments) {
@@ -65,27 +59,23 @@ function App() {
     }
     setData({ ...temp });
   };
-  const findCommentToReply = (parent, replies, id, content, replyingToUser) => {
+  const findCommentToDelete = (parent, replies, id) => {
     let temp = parent;
-    if (!temp.replies) temp.replies = [];
     for (let reply of replies) {
       if (reply.id === id) {
-        temp.replies.push({
-          id: Math.random(),
-          content,
-          createdAt: Date.now(),
-          score: 0,
-          replyingTo: replyingToUser,
-          user: { ...data.currentUser },
-        });
+        temp.replies = temp.replies.filter(
+          (filComment) => filComment.id !== id
+        );
         break;
       } else {
         if (reply?.replies?.length > 0) {
-          findCommentToReply(reply, reply.replies, id, content);
+          findCommentToDelete(reply, reply.replies, id);
         }
       }
     }
   };
+
+  // Functions for replying to another users comment
   const newReplyTo = (id, replyingToUser, content) => {
     let temp = data;
     for (let comment of temp.comments) {
@@ -115,6 +105,30 @@ function App() {
     }
     setData({ ...temp });
   };
+  const findCommentToReply = (parent, replies, id, content, replyingToUser) => {
+    let temp = parent;
+    if (!temp.replies) temp.replies = [];
+    for (let reply of replies) {
+      if (reply.id === id) {
+        temp.replies.push({
+          id: Math.random(),
+          content,
+          createdAt: Date.now(),
+          score: 0,
+          replyingTo: replyingToUser,
+          user: { ...data.currentUser },
+        });
+        break;
+      } else {
+        if (reply?.replies?.length > 0) {
+          findCommentToReply(reply, reply.replies, id, content);
+        }
+      }
+    }
+  };
+
+  // Functions for updating a user's comment
+
   const updateComment = (id, content) => {
     let temp = data;
     for (let comment of temp.comments) {
@@ -141,6 +155,8 @@ function App() {
       }
     }
   };
+
+  // Function for adding a new top level comment
   const newComment = (content) => {
     let temp = data;
     temp.comments.push({
@@ -153,9 +169,13 @@ function App() {
     });
     setData({ ...temp });
   };
-
+  // Function for calculating the time since a comment was posted
   const timeSince = (date) => {
+    // Taking the input date and find how many seconds have passed (dividing by 1000 to convert from miliseconds )
     let seconds = Math.floor((new Date() - date) / 1000);
+
+    // Divide the result with the number of seconds for a year, month, etc. to find elapsed time
+    // Add the string descriptor to the end
 
     let interval = seconds / 31536000;
 
@@ -191,6 +211,8 @@ function App() {
         />
       )}
       <div className="comments">
+        {/* Sort the top level comments by their scores
+        If the score is higher place the comment above, lower and place it below, otherwise maintain the same order */}
         {data.comments
           .sort((a, b) => {
             if (a.score > b.score) return -1;
