@@ -202,7 +202,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <main className="App">
       {deleteComment && (
         <DeleteModal
           setDeleteComment={setDeleteComment}
@@ -235,7 +235,7 @@ function App() {
       <div className="newCommentBox">
         <NewComment image={data.currentUser.image} newComment={newComment} />
       </div>
-    </div>
+    </main>
   );
 }
 
