@@ -107,7 +107,7 @@ export default function CommentCard({
                   onChange={(e) => setEdit(e.target.value)}
                 />
                 <button
-                  className="mouse-pointer"
+                  className="mouse-pointer updateCommentButton"
                   onClick={() => {
                     updateComment(comment.id, edit);
                     setEdit(false);

@@ -9,18 +9,18 @@ export default function NewReply({
   const [replyText, setReplyText] = useState(`@${replyingTo.user.username} `);
   return (
     <div className="newReplyContainer box">
-      <div className="newCommentContent">
-        <div className="newCommentImg">
+      <div className="replyToCommentContent">
+        <div className="replyToCommentImg">
           <img src={`${process.env.PUBLIC_URL}${image.png}`} />
         </div>
-        <div className="newCommentTextbox">
+        <div className="replyToCommentTextarea">
           <textarea
             placeholder="Add a comment..."
             value={replyText}
             onChange={(e) => setReplyText(e.target.value)}
           />
         </div>
-        <div className="newCommentButton">
+        <div className="replyToCommentButton">
           <button
             className="mouse-pointer"
             onClick={() => {
