@@ -283,10 +283,6 @@ button:active {
 }
 
 
-.newCommentButton {
-    padding-right: 1rem;
-}
-
 /** DELETE MODAL **/
 
 .deleteModal {
@@ -447,12 +443,16 @@ button:active {
         display: flex;
         flex-wrap: wrap;
         gap: 2rem;
-        padding: 0rem 0rem 0 0rem;
+        padding: 0rem;
     }
 
     .replyToCommentTextarea {
         width: 100%;
         order: 0;
+    }
+
+    .replyToCommentTextarea textarea {
+        padding: 1rem 0 2rem 0;
     }
 
     .replyToCommentImg {
@@ -505,7 +505,7 @@ button:active {
     }
 
     .box {
-        padding: 2rem;
+        padding: 1.25rem 1.25rem;
 
     }
 
@@ -549,6 +549,7 @@ button:active {
 
     .newCommentContent {
         flex-wrap: nowrap;
+        gap: 0rem;
     }
 
     .newCommentTextbox {
@@ -565,7 +566,7 @@ button:active {
 
     .newCommentImg {
         order: 0;
-        margin-left: 1rem;
+        margin-left: 1.25rem;
     }
 
     .newCommentButton {
@@ -576,8 +577,8 @@ button:active {
     .replyToCommentContent {
         display: flex;
         flex-wrap: nowrap;
-        gap: 2rem;
-        padding: 0rem 1rem 0 1rem;
+        gap: 1rem;
+        padding: 0rem 0rem 0 1rem;
     }
 
     .replyToCommentTextarea {
