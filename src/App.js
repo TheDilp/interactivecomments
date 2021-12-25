@@ -202,7 +202,7 @@ function App() {
   };
 
   return (
-    <main className="App">
+    <main className="App" role="main">
       {deleteComment && (
         <DeleteModal
           setDeleteComment={setDeleteComment}
