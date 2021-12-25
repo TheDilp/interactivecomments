@@ -549,7 +549,7 @@ button:active {
 
     .newCommentContent {
         flex-wrap: nowrap;
-        gap: 0rem;
+        gap: 1rem;
     }
 
     .newCommentTextbox {
